@@ -1,33 +1,30 @@
 'use strict';
 
 module.exports = function(grunt) {
-  // var concat = require('./grunt/concat.js');
+// var concat = require('./grunt/concat.js');
   // Project configuration.
   grunt.initConfig({
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
     banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-    '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-    '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-    '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-    ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
+      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
+      '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
+      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
+      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
     
-    concat: {
+		concat: {
       options: {
         banner: '<%= banner %>',
-        stripBanners: true,
-      }
-      ,basic:{
+        stripBanners: true
+      },
+      dist: {
         src: ['lib/<%= pkg.name %>.js','lib/*.js'],
-        dest: 'dist/<%= pkg.name %>.js', 
-      }
-      ,extras:{
-        src: '*.js',
-        dest: 'img/sososo.js',
-      }
-    }
-    ,uglify: {
+        dest: 'dist/<%= pkg.name %>.js'
+      },
+    },
+    
+	uglify: {
       options: {
         banner: '<%= banner %>'
       },
@@ -69,32 +66,17 @@ module.exports = function(grunt) {
         files: '<%= jshint.test.src %>',
         tasks: ['jshint:test', 'nodeunit']
       },
-    }
-    ,responsive_images:{
-      options:{}
-      ,respimg1:{
-        options:{}
-        ,src:'tennis_001.jpg'
-		    ,dest:'img/tennis_009.jpg'
-      }
-      ,respimg2:{
-        options:{}
-        ,src:'tennis_002.jpg'
-		    ,dest:'img/tennis_008.jpg'
-      }
-    }
+    },
   });
-  
+
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-responsive-images');
-  
+
   // Default task.
   grunt.registerTask('default', ['jshint', 'nodeunit', 'concat', 'uglify']);
-  grunt.registerTask('concat1',['concat:basic','concat:extras']);
-  grunt.registerTask('respimg',['respimg1','respimg2']);
+
 };

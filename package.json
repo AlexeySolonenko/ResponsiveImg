@@ -1,7 +1,42 @@
 {
-  "name": "ResponiveImages",
+  "name": "responsiveimg",
+  "description": "Udacity Front End Development Course on Responsive Images. Exercise project.",
   "version": "0.1.0",
+  "homepage": "",
+  "author": {
+    "name": "Alexey Solonenko",
+    "email": "ot2@bk.ru"
+  },
+  "repository": {
+    "type": "git",
+    "url": "y"
+  },
+  "bugs": {
+    "url": ""
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/ResponsiveImg",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "scripts": {
+    "test": "grunt nodeunit"
+  },
   "devDependencies": {
-    "grunt": "~0.4.1"
-  }
+    "grunt": "~0.4.5",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-watch": "~0.4.0",
+    "grunt-responsive-images": "^1.10.1",
+    "jit-grunt": "^0.10.0",
+    "load-grunt-config": "^0.19.2"
+  },
+  "keywords": []
 }
