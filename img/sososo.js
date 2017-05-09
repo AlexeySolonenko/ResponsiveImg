@@ -71,6 +71,29 @@ module.exports = function(grunt) {
         files: '<%= jshint.test.src %>',
         tasks: ['jshint:test', 'nodeunit']
       },
+    }
+    ,responsive_images:{
+      options:{
+        //engine:'im',
+      }
+      ,respimg1:{
+        options:{}
+        ,files:[{
+          //'tennis_001.jpg':'img/tennis_009.jpg'
+          src:'tennis_001.jpg'
+		      ,dest:'img/ini/'
+        }]
+        //,src:'tennis_001.jpg'
+		    //,dest:'img/tennis_009.jpg'
+      }
+      ,respimg2:{
+        options:{}
+        ,files:{
+          '/tennis_002.jpg':'img/tennis_008.jpg'
+        }
+        //,src:'tennis_002.jpg'
+		    //,dest:'img/tennis_008.jpg'
+      }
     },
   });
   
@@ -80,10 +103,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-responsive-images');
   
   // Default task.
   grunt.registerTask('default', ['jshint', 'nodeunit', 'concat', 'uglify']);
-  grunt.registerTask('concat1',['concat:basic','concat:extras']);
+  grunt.registerTask('basic',['concat:basic']);
+  grunt.registerTask('extras',['concat:extras']);
+  grunt.registerTask('respimg11',['responsive_images:respimg1']);
+  grunt.registerTask('respimg12',['responsive_images:respimg2']);
 };
 
 'use strict';
