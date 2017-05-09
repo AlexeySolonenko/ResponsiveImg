@@ -71,10 +71,10 @@ module.exports = function(grunt) {
       },
     }
     ,responsive_images:{
-      options:{
+      //options:{
         //engine:'im',
-      }
-      ,respimg1:{
+      //}
+      respimg1:{
         options:{}
         ,files:[{
           //'tennis_001.jpg':'img/tennis_009.jpg'
@@ -86,9 +86,12 @@ module.exports = function(grunt) {
       }
       ,respimg2:{
         options:{}
-        ,files:{
-          '/tennis_002.jpg':'img/tennis_008.jpg'
-        }
+        ,files:[{
+          expand: true
+          ,src: ['tennis_002.jpg']
+          ,cwd: 'img/' //current working directory
+          ,dest: 'img/cnvtd/'
+        }]
         //,src:'tennis_002.jpg'
 		    //,dest:'img/tennis_008.jpg'
       }
@@ -106,7 +109,7 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', ['jshint', 'nodeunit', 'concat', 'uglify']);
   grunt.registerTask('basic',['concat:basic']);
-  grunt.registerTask('extras',['concat:extras']);
+  //grunt.registerTask('extras',['concat:extras']);
   grunt.registerTask('respimg11',['responsive_images:respimg1']);
   grunt.registerTask('respimg12',['responsive_images:respimg2']);
 };
