@@ -1,0 +1,3 @@
+C:\Users\Lixedala\AppData\Roaming\npm
+`-- grunt-pagespeed@2.0.1 
+

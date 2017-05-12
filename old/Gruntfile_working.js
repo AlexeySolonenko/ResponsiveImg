@@ -70,32 +70,6 @@ module.exports = function(grunt) {
         tasks: ['jshint:test', 'nodeunit']
       },
     }
-     /* Clear out the images directory if it exists */
-    ,clean: {
-      dev: {
-        src: ['images'],
-      },
-    },
-
-    /* Generate the images directory if it is missing */
-    mkdir: {
-      dev: {
-        options: {
-          create: ['images']
-        },
-      },
-    },
-
-    /* Copy the "fixed" images that don't go through processing into the images/directory */
-    copy: {
-      dev: {
-        files: [{
-          expand: true,
-          src: 'images_src/fixed/*.{gif,jpg,png}',
-          dest: 'images/'
-        }]
-      },
-    }
     ,responsive_images:{
       //options:{
         //engine:'im',
@@ -114,63 +88,14 @@ module.exports = function(grunt) {
         options:{}
         ,files:[{
           expand: true
-          ,src: ['**.{jpg,gif,png}']
+          ,src: ['tennis_002.jpg']
           ,cwd: 'img/' //current working directory
           ,dest: 'img/cnvtd/'
         }]
         //,src:'tennis_002.jpg'
 		    //,dest:'img/tennis_008.jpg'
       }
-      ,dev: {
-        options: {
-          // engine: 'im',
-          sizes: [{
-            
-            //Change these:
-            
-            width: 800,
-            suffix: '_cmpd',
-            quality: 45
-            
-          }]
-        },
-
-        /*
-        You don't need to change this part if you don't change
-        the directory structure.
-        */
-        files: [{
-          expand: true,
-          src: ['*.{gif,jpg,png}'],
-          cwd: 'images_src/',
-          dest: 'images/'
-        }]
-      }
     },
-    
-      pagespeed: {
-        options: {
-          nokey: true,
-          url: "https://developers.google.com"
-        },
-        prod: {
-          options: {
-            //url: "https://developers.google.com/speed/docs/insights/v1/getting_started",
-            url:"http://studysnami.ru/index.php/ru/",
-            locale: "en_GB",
-            strategy: "desktop",
-            threshold: 1
-          }
-        },
-        paths: {
-          options: {
-            paths: ["/speed/docs/insights/v1/getting_started", "/speed/docs/about"],
-            locale: "en_GB",
-            strategy: "desktop",
-            threshold: 80
-          }
-        }
-      }
   });
   
   // These plugins provide necessary tasks.
@@ -180,10 +105,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-responsive-images');
-  grunt.loadNpmTasks('grunt-pagespeed');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-mkdir');
   
   // Default task.
   grunt.registerTask('default', ['jshint', 'nodeunit', 'concat', 'uglify']);
@@ -191,5 +112,4 @@ module.exports = function(grunt) {
   //grunt.registerTask('extras',['concat:extras']);
   grunt.registerTask('respimg11',['responsive_images:respimg1']);
   grunt.registerTask('respimg12',['responsive_images:respimg2']);
-  grunt.registerTask('optim2', ['clean', 'mkdir', 'copy', 'responsive_images:dev']);
 };
